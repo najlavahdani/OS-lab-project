@@ -89,6 +89,10 @@ else
     STATUS="FAILURE"
 fi
 
+# record information in backup.log
+echo "[$(date +"%Y-%m-%d %H:%M:%S")] STATUS: $STATUS | Archive: $(basename "$ARCHIVE_NAME") | Size: $BACKUP_SIZE | Duration: ${DURATION}s" >> "$LOG_FILE"
+
+echo "Backup report written to $LOG_FILE"
 
 
 
