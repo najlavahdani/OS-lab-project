@@ -12,6 +12,9 @@ FILE_EXTENSION="$2"
 BACKUP_DIR="$3"
 RETENTION_DAYS="$4"
 
+# start time for reporting
+START_TIME=$(date +%s)
+
 # checking for the existence of the search path
 if [ ! -d "$SEARCH_PATH" ]; then
 	echo "Error: the path '$SEARCH_PATH' doesnt exist."
@@ -70,7 +73,12 @@ echo "Uncompressed backup folder removed."
 
 
 
+#part4
+LOG_FILE="backup.log"
 
+# calculating the end time and duration of the operation
+END_TIME=$(date +%s)
+DURATION=$((END_TIME - START_TIME))
 
 
 
