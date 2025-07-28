@@ -95,8 +95,13 @@ echo "[$(date +"%Y-%m-%d %H:%M:%S")] STATUS: $STATUS | Archive: $(basename "$ARC
 echo "Backup report written to $LOG_FILE"
 
 
+#part5
+# delete old backups
+echo "Looking for old backups older than $RETENTION_DAYS days..."
 
+find "$BACKUP_DIR" -type f -name "backup_*.tar.gz" -mtime +$RETENTION_DAYS -exec rm -f {} \;
 
+echo "Old backups older than $RETENTION_DAYS days deleted (if any)."
 
 
 
