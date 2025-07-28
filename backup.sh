@@ -57,8 +57,12 @@ done < "$CONF_FILE"
 echo "Backup completed and saved to $DEST_DIR"
 
 
+#part3
+# compressing the backup folder with tar and gzip
+ARCHIVE_NAME="$BACKUP_DIR/backup_$TIMESTAMP.tar.gz"
+tar -czf "$ARCHIVE_NAME" -C "$BACKUP_DIR" "backup_$TIMESTAMP"
 
-
+echo "Backup archive created at: $ARCHIVE_NAME"
 
 
 
