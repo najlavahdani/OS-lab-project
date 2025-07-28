@@ -35,3 +35,8 @@ CONF_FILE="backup.conf"
 if [ -f "$CONF_FILE" ]; then 
 	rm "$CONF_FILE"
 fi
+
+# search and save file paths in backup.conf
+find "$SEARCH_PATH" -type f -name "*$FILE_EXTENSION" > "$CONF_FILE"
+
+echo "List of files to backup saved to $CONF_FILE"
