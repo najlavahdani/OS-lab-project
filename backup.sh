@@ -30,4 +30,8 @@ echo "FILE EXTENSION: $FILE_EXTENSION"
 echo "BACKUP DIRECTORY: $BACKUP_DIR"
 echo "RETENTION DAYS: $RETENTION_DAYS"
 
-
+# delete the previous backup.conf file if it exists
+CONF_FILE="backup.conf"
+if [ -f "$CONF_FILE" ]; then 
+	rm "$CONF_FILE"
+fi
