@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#part1S
 # checking the number of arguments
 if [ "$#" -ne 4 ]; then 
 	echo "Usage: $0 <search_path> <file_extension> <backup_directory> <retention_days>"
@@ -18,7 +18,7 @@ if [ ! -d "$SEARCH_PATH" ]; then
 	exit 1
 fi 
 
-# if the backup path does not exist, creat it
+# if the backup path does not exist,S creat it
 if [ ! -d "$BACKUP_DIR" ]; then
 	mkdir -p "$BACKUP_DIR"
 	echo "backup folder created at: $BACKUP_DIR"
@@ -38,5 +38,43 @@ fi
 
 # search and save file paths in backup.conf
 find "$SEARCH_PATH" -type f -name "*$FILE_EXTENSION" > "$CONF_FILE"
-
 echo "List of files to backup saved to $CONF_FILE"
+
+# part2
+# create a timestamped subdirectory inside the backup directory
+TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+DEST_DIR="$BACKUP_DIR/backup_$TIMESTAMP"
+mkdir -p "$DEST_DIR"
+
+# copy files to the new backup directory
+while IFS= read -r file_path; do
+	# preserve directory structure
+	RELATIVE_PATH="${file_path#$SEARCH_PATH/}"
+	DEST_PATH="$DEST_DIR/$RELATIVE_PATH"
+    	mkdir -p "$(dirname "$DEST_PATH")"
+	cp "$file_path" "$DEST_PATH"
+done < "$CONF_FILE"
+echo "Backup completed and saved to $DEST_DIR"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
