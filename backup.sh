@@ -64,8 +64,9 @@ tar -czf "$ARCHIVE_NAME" -C "$BACKUP_DIR" "backup_$TIMESTAMP"
 
 echo "Backup archive created at: $ARCHIVE_NAME"
 
-
-
+# delete uncompressed folder after creating archive
+rm -rf "$DEST_DIR"
+echo "Uncompressed backup folder removed."
 
 
 
