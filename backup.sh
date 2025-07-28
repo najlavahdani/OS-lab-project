@@ -80,6 +80,14 @@ LOG_FILE="backup.log"
 END_TIME=$(date +%s)
 DURATION=$((END_TIME - START_TIME))
 
+# checking the success or failure of compression
+if [ -f "$ARCHIVE_NAME" ]; then
+    BACKUP_SIZE=$(du -h "$ARCHIVE_NAME" | cut -f1)
+    STATUS="SUCCESS"
+else
+    BACKUP_SIZE="0"
+    STATUS="FAILURE"
+fi
 
 
 
